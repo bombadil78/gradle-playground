@@ -23,5 +23,11 @@ pipeline {
                 sh 'cd docker && ./gradlew buildFrontendImage'
             }
         }
+        stage('Publish') {
+            steps {
+                sh 'echo \'Push to versioned images to registry\''
+                sh 'echo \'Publish docker-compose as artifact\''
+            }
+        }
     }
 }
