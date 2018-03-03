@@ -1,10 +1,13 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'gradle:4.6.0-jdk8-alpine'
+        }
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'cd master && ./gradlew hello
             }
         }
         stage('Test') {
