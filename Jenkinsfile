@@ -3,11 +3,7 @@ pipeline {
     stages {
         stage('Test Backend') {
             agent {
-                docker {
-                    image {
-                        'chkeller:java-buildstack'
-                    }
-                }
+                docker { image 'chkeller:java-buildstack' }
             }
             steps {
                 sh 'cd backend && ./gradlew test check'
