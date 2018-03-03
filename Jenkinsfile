@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Dockerize') {
             steps {
-                sh 'cd docker && ./gradlew buildBackendImage'
-                sh 'cd docker && ./gradlew buildFrontendImage'
+                sh 'cd docker && ./gradlew copyBackend'
+                sh 'cd docker && ./gradlew copyFrontend'
             }
         }
     }
