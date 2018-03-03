@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd master && ./gradlew hello
+                sh 'cd master && ./gradlew hello'
             }
         }
         stage('Test') {
