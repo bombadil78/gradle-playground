@@ -1,1 +1,1 @@
-includeFlat 'p1', 'p2'
+includeFlat 'backend', 'frontend', 'docker'

@@ -1,0 +1,25 @@
+task publishBuildStacks {
+    doLast {
+        exec {
+            commandLine 'docker', 'build', '--tag', 'java-buildstack', 'java-buildstack'
+        }
+        exec {
+            commandLine 'docker', 'tag', 'java-buildstack', 'chkeller/java-buildstack'
+        }
+        exec {
+            commandLine 'docker', 'build', '--tag', 'ng-buildstack', 'ng-buildstack'
+        }
+        exec {
+            commandLine 'docker', 'tag', 'ng-buildstack', 'chkeller/ng-buildstack'
+        }
+        exec {
+            commandLine 'docker', 'login', '--username', 'chkeller', '--password', "${pwd}"
+        }
+        exec {
+            commandLine 'docker', 'push', 'chkeller/java-buildstack'
+        }
+        exec {
+            commandLine 'docker', 'push', 'chkeller/ng-buildstack'
+        }
+    }
+}
