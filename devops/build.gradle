@@ -1,0 +1,16 @@
+task publishBuildStacks {
+    doLast {
+        exec {
+            commandLine 'docker', 'build', '--tag', 'buildstack', 'buildstack'
+        }
+        exec {
+            commandLine 'docker', 'tag', 'buildstack', 'chkeller/buildstack'
+        }
+        exec {
+            commandLine 'docker', 'login', '--username', 'chkeller', '--password', "${pwd}"
+        }
+        exec {
+            commandLine 'docker', 'push', 'chkeller/buildstack'
+        }
+    }
+}
