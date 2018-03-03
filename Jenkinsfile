@@ -4,7 +4,6 @@ pipeline {
         stage('Test Backend') {
             agent {
                 docker {
-                    label 'java'
                     image 'chkeller/java-buildstack'
                 }
             }
