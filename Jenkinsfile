@@ -16,10 +16,14 @@ pipeline {
                 sh 'cd backend && ./gradlew build'
             }
         }
-        stage('Dockerize') {
+        stage('Dockerize & push') {
             steps {
-                sh 'cd docker && ./gradlew buildBackendImage'
-                sh 'cd docker && ./gradlew buildFrontendImage'
+                sh 'cd docker && ./gradlew copyBackend'
+                sh 'cd docker && ./gradlew copyFrontend'
+                sh 'cd docker && docker build --tag chkeller/gradle-playground-proxy proxy'
+                sh 'cd docker && docker build --tag chkeller/gradle-playground-backend backend'
+                sh 'cd docker && docker build --tag chkeller/gradle-playground-backend frontend'
+                sh 'echo \'push to repo here\''
             }
         }
     }
