@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd frontend && ng build --prod'
+                sh 'cd frontend && npm install && ng build --prod'
                 sh 'cd backend && ./gradlew build'
             }
         }
