@@ -1,0 +1,11 @@
+subprojects {
+    task P1Stuff { task -> 
+        println "P1 Stuff from $task.project.name"
+    }
+}
+
+task onlyP1 {
+     doLast {
+     	    println 'Only P1'
+     }
+}

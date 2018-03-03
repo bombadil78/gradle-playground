@@ -1,0 +1,13 @@
+allprojects {
+    task hello {	    
+        doLast { task ->
+    	    println "hello $task.project.name"
+    	}
+    }
+}
+
+project(':p1') {
+    task foo {
+        println 'foo'
+    }
+}

@@ -1,0 +1,5 @@
+task onlyP2(dependsOn: ':p1:onlyP1') {
+     doLast {
+     	    println 'Only P2'
+     }
+}

@@ -110,16 +110,32 @@ There exist various lifecycle hooks in order to add additional steps to the buil
 * ...
 
 ## Multi-project builds
-Build configuration in a root project can be used to define other build configuration:
-* Common to all projects using *allprojects*
-* All subprojects of a project using *subprojects*
-* A single subproject using project(somePath)
-* A selection of subprojects using *configure(subprojects.findAll(...)*
+Projects are configured using *build.gradle* configuration files. Every project can optionally have a build configuration file. It is possible to configure any project from any build configuration file using *project()* as long as they are part of a multi-project build. This is called *cross-project configuration*. In order to create multi-project builds subproject relations must be expressed using *include* or *includeFlat* in the settings file of a parent project.
 
+There are three relevant phases in a Gradle Build:
+* Initialization: Creation of a *Project* representation for all relevant participating projects of the build
+* Configuration: Configuration of the participating projects; takes into account configuration dependencies
+* Execution: Execution of the participating projects; takes into account execution dependencies
 
-## Multi-project builds
-TODO
-* settings.gradle: Defines which folders participate using include or includeFlat
+A multi-project build is expressed through a dedicated *master* sibling directory or a parent directory containing a *settings.gradle* file where subproject relations are expressed using *includeFlat* or *include*.
+
+Configuration abstraction can be expressed in the root project using the following approaches:
+* *allprojects*: Configuration common to all projects
+* *subprojects*: Configuration common to all subprojects
+* *project(somePath)*: Configuration for a given project
+* *configure(subprojects.findAll(...)*: Configuration common to a set of projects
+
+### Execution dependencies
+Tasks are executed using two different approaches:
+* Explicitly using column notation, e.g. ./gradlew :p1:hello :p2:goodbye
+* Implicitly using only the task name, e.g. ./gradlew hello 
+
+There are two ways to express execution dependencies:
+* Top-down: A 
+
+# Questions
+* 
+
 
 ### Plugin java-application
 * java-application plugin as an example:
