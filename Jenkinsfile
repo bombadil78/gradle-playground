@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     stages {
         stage('Test Backend') {
             agent {
@@ -13,13 +14,6 @@ pipeline {
             }
         }
         stage('Test Frontend') {
-            agent {
-                docker {
-                    image {
-                        'chkeller:ng-buildstack'
-                    }
-                }
-            }
             steps {
                 sh 'cd frontend && ./gradlew build'
             }
