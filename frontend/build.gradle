@@ -1,0 +1,8 @@
+task build {
+  doLast {
+      exec {
+          commandLine 'npm', 'install'
+          commandLine 'ng', 'build', '--prod'
+      }
+  }
+}
