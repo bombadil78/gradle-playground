@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+        USERNAME = credentials('username')
+        PASSWORD = credentials('password')
+    }
     agent {
         docker {
             image 'chkeller/buildstack'
@@ -8,6 +12,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh 'echo $USERNAME'
+                sh 'echo $PASSWORD'
                 sh 'cd backend && ./gradlew test check'
             }
         }
