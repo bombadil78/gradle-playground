@@ -7,7 +7,7 @@ pipeline {
         docker {
             image 'chkeller/buildstack'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
-            args '-v /home/root/.docker:/home/root/.docker'
+            args '-v /root/.docker:/root/.docker'
             reuseNode true
         }
     }
