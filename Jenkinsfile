@@ -13,7 +13,6 @@ pipeline {
         stage('Commit') {
             steps {
                 sh 'cd backend && ./gradlew build check'
-                sh 'cd frontend && ./gradlew
             }
 
             post {
