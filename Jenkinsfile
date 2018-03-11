@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        DOCKER_REGISTRY_PASSWORD = credentials('docker-registry-password')
+        DOCKER_REGISTRY_PASSWORD = 'emad1331'
     }
     agent {
         docker {
