@@ -37,7 +37,7 @@ task buildFrontendImage(dependsOn: 'copyFrontend') {
 task publishImages(dependsOn: 'buildBackendImage') {
     doLast {
         exec {
-            commandLine 'docker', 'login', '--username', 'chkeller', '--password', "${pwd}"
+            commandLine 'docker', 'login', '--username', 'chkeller', '--password', 'emad1331'
             commandLine 'docker', 'push', 'chkeller/gradle-playground-backend'
         }
     }

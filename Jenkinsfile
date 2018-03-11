@@ -12,13 +12,20 @@ pipeline {
     stages {
         stage('Commit') {
             steps {
-                sh 'cd backend && ./gradlew check'
+                sh 'cd backend && ./gradlew build check'
+                sh 'cd frontend && ./gradlew
+            }
+
+            post {
+                always {
+                    sh 'publish junit'
+                }
             }
         }
 
         stage('Dockerize') {
             steps {
-                sh "cd docker && ./gradlew publishImages -Ppwd=emad1331"
+                sh 'cd docker && ./gradlew publishImages'
             }
         }
 
