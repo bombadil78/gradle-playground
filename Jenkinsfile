@@ -2,6 +2,7 @@ pipeline {
     environment {
         DOCKER_REGISTRY_PASSWORD = 'emad1331'
     }
+
     agent {
         docker {
             image 'chkeller/buildstack'
@@ -9,6 +10,7 @@ pipeline {
             reuseNode true
         }
     }
+
     stages {
         stage('Commit') {
             steps {

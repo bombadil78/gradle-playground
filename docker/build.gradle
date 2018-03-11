@@ -34,14 +34,31 @@ task buildFrontendImage(dependsOn: 'copyFrontend') {
     }
 }
 
+task buildProxyImage() {
+    doLast {
+        exec {
+            commandLine 'docker', 'build', '--tag', 'chkeller/gradle-playground-proxy', 'proxy'
+        }
+    }
+}
+
 task publishImages() {
     dependsOn buildBackendImage
     dependsOn buildFrontendImage
+    dependsOn buildProxyImage
 
     doLast {
         exec {
             commandLine 'docker', 'login', '--username', 'chkeller', '--password', 'emad1331'
             commandLine 'docker', 'push', 'chkeller/gradle-playground-backend'
+            commandLine 'docker', 'push', 'chkeller/gradle-playground-frontend'
+            commandLine 'docker', 'push', 'chkeller/gradle-playground-proxy'
         }
+    }
+}
+
+task generateDockerCompose() {
+    doLast {
+
     }
 }
