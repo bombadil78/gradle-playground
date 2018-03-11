@@ -18,7 +18,7 @@ pipeline {
 
             post {
                 always {
-                    sh 'publish junit results'
+                    sh 'echo \'publish junit results\''
                 }
             }
         }
