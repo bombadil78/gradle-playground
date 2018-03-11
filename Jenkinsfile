@@ -17,5 +17,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Dockerize') {
+            steps {
+                sh 'cd docker && ./gradlew tasks'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'echo todo'
+            }
+        }
     }
 }
