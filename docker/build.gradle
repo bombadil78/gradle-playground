@@ -34,7 +34,10 @@ task buildFrontendImage(dependsOn: 'copyFrontend') {
     }
 }
 
-task publishImages(dependsOn: 'buildBackendImage') {
+task publishImages() {
+    dependsOn buildBackendImage
+    dependsOn buildFrontendImage
+
     doLast {
         exec {
             commandLine 'docker', 'login', '--username', 'chkeller', '--password', 'emad1331'
