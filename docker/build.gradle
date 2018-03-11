@@ -56,3 +56,17 @@ task publishImages() {
         }
     }
 }
+
+task generateDockerCompose(type: Copy) {
+    doLast {
+        commandLine 'echo', '\'copy tag into docker-compose file\''
+    }
+}
+
+task publishDockerCompose() {
+    dependsOn generateDockerCompose
+
+    doLast {
+        commandLine 'echo', '\'copy docker-compose to nexus\''
+    }
+}

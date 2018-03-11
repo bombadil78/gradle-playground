@@ -28,6 +28,7 @@ pipeline {
         stage('Dockerize') {
             steps {
                 sh 'cd docker && ./gradlew publishImages'
+                sh 'cd docker && ./gradlew publishDockerCompose'
             }
         }
 
