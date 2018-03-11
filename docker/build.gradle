@@ -1,4 +1,4 @@
-task copyBackend(dependsOn: ':backend:assemble', type: Copy) {
+task copyBackend(type: Copy) {
     from "./../backend/build/libs"
     into "./backend"
     include "app.jar"
@@ -8,7 +8,7 @@ task copyBackend(dependsOn: ':backend:assemble', type: Copy) {
     }
 }
 
-task copyFrontend(dependsOn: ':frontend:build', type: Copy) {
+task copyFrontend(type: Copy) {
     from "./../frontend/dist"
     into "./frontend/dist"
     include "*"
@@ -30,6 +30,15 @@ task buildFrontendImage(dependsOn: 'copyFrontend') {
     doLast {
         exec {
             commandLine 'docker', 'build', '--tag', 'chkeller/gradle-playground-frontend', 'frontend'
+        }
+    }
+}
+
+task publishImages(dependsOn: 'buildBackendImage') {
+    doLast {
+        exec {
+            commandLine 'docker', 'login', '--username', 'chkeller', '--password', "${pwd}"
+            commandLine 'docker', 'push', 'chkeller/gradle-playground-backend'
         }
     }
 }
