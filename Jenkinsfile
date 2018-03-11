@@ -10,17 +10,11 @@ pipeline {
             steps {
                 sh 'cd backend && ./gradlew check'
             }
-
-            post {
-                always {
-                    junit 'build/test-results/**/*.xml'
-                }
-            }
         }
 
         stage('Dockerize') {
             steps {
-                sh 'cd docker && ./gradlew tasks'
+                sh 'cd docker && ./gradlew buildBackendImage'
             }
         }
 
