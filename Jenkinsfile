@@ -1,8 +1,4 @@
 pipeline {
-    environment {
-        USERNAME = credentials('username')
-        PASSWORD = credentials('password')
-    }
     agent {
         docker {
             image 'chkeller/buildstack'
@@ -10,29 +6,15 @@ pipeline {
         }
     }
     stages {
-        stage('Test') {
+        stage('Commit') {
             steps {
-                sh 'echo $USERNAME'
-                sh 'echo $PASSWORD'
-                sh 'cd backend && ./gradlew test check'
+                sh 'cd backend && ./gradlew check'
             }
-        }
-        stage('Build') {
-            steps {
-                sh 'cd frontend && ./gradlew build'
-                sh 'cd backend && ./gradlew build'
-            }
-        }
-        stage('Dockerize') {
-            steps {
-                sh 'cd docker && ./gradlew buildBackendImage'
-                sh 'cd docker && ./gradlew buildFrontendImage'
-            }
-        }
-        stage('Publish') {
-            steps {
-                sh 'echo \'Push to versioned images to registry\''
-                sh 'echo \'Publish docker-compose as artifact\''
+
+            post {
+                always {
+                    junit 'backend/build/reports/**/*.html'
+                }
             }
         }
     }
