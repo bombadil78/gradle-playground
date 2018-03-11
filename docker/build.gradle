@@ -56,9 +56,3 @@ task publishImages() {
         }
     }
 }
-
-task generateDockerCompose() {
-    doLast {
-
-    }
-}
