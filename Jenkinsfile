@@ -28,7 +28,7 @@ pipeline {
 
         stage('Dockerize') {
             steps {
-                sh "cd docker && ./gradlew publishImages -pDOCKER_PASSWORD=${DOCKER_PASSWORD}"
+                sh "cd docker && ./gradlew publishImages -PDOCKER_PASSWORD=${DOCKER_PASSWORD}"
                 sh 'cd docker && ./gradlew publishDockerCompose'
             }
         }
