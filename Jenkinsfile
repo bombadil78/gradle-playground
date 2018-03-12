@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        DOCKER_PASSWORD = 'emad1331'
+        DOCKER_PASSWORD = credentials('docker-password')
     }
 
     agent {
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'cd docker && ./gradlew deploy'
+                sh 'cd docker'
             }
         }
     }
