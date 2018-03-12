@@ -49,7 +49,7 @@ task publishImages() {
 
     doLast {
         exec {
-            commandLine 'docker', 'login', '--username', 'chkeller', '--password', 'emad1331'
+            commandLine 'docker', 'login', '--username', 'chkeller', '--password', "${DOCKER_PASSWORD}"
         }
         exec {
             commandLine 'docker', 'push', 'chkeller/gradle-playground-backend'

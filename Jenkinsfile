@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        DOCKER_REGISTRY_PASSWORD = 'emad1331'
+        DOCKER_PASSWORD = 'emad1331'
     }
 
     agent {
@@ -28,7 +28,7 @@ pipeline {
 
         stage('Dockerize') {
             steps {
-                sh 'cd docker && ./gradlew publishImages'
+                sh "cd docker && ./gradlew publishImages -pDOCKER_PASSWORD=${DOCKER_PASSWORD}"
                 sh 'cd docker && ./gradlew publishDockerCompose'
             }
         }
